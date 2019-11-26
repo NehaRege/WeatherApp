@@ -23,10 +23,10 @@ public class Currently {
     public Integer nearestStormBearing;
     @SerializedName("precipIntensity")
     @Expose
-    public Integer precipIntensity;
+    public Double precipIntensity;
     @SerializedName("precipProbability")
     @Expose
-    public Integer precipProbability;
+    public Double precipProbability;
     @SerializedName("temperature")
     @Expose
     public Double temperature;
@@ -53,7 +53,7 @@ public class Currently {
     public Integer windBearing;
     @SerializedName("cloudCover")
     @Expose
-    public Integer cloudCover;
+    public Double cloudCover;
     @SerializedName("uvIndex")
     @Expose
     public Integer uvIndex;

@@ -49,13 +49,13 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
         Data data = mDataList.get(position);
 
         //TODO: Add images
-        Glide.with(holder.itemView)
-                .load(data.icon)
-                .centerCrop()
-                .into(holder.weatherIcon);
+//        Glide.with(holder.itemView)
+//                .load(data.icon)
+//                .centerCrop()
+//                .into(holder.weatherIcon);
 
         //TODO: Format time and temperature
-        holder.temperature.setText(data.temperature + "");
+        holder.temperature.setText(data.temperature + " \u2109");
         holder.hour.setText(TimeUtils.timestampToHour(data.time));
     }
 
