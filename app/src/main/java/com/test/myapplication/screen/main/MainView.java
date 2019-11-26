@@ -6,6 +6,10 @@ public interface MainView {
 
     void displayForecast(Forecast forecast);
 
+    void displayDateAndTime();
+
+    void displayLocation();
+
     void isLoading(boolean isLoading);
 
     void showErrorView();

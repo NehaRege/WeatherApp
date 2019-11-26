@@ -1,6 +1,7 @@
 package com.test.myapplication.data.dataManager;
 
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import com.test.myapplication.api.ApiClient;
 import com.test.myapplication.api.ApiService;
@@ -23,11 +24,13 @@ public class DataManagerImpl implements DataManager {
 
     @Override
     public Observable<Forecast> getWeatherForecast(double latitude, double longitude) {
+        Log.d(TAG, "getWeatherForecast: ");
         return getObservableForecast(latitude, longitude);
     }
 
 
     public Observable<Forecast> getObservableForecast(double latitude, double longitude) {
+        Log.d(TAG, "getObservableForecast: ");
         return ApiClient.getRetrofit()
                 .create(ApiService.class)
                 //TODO: Add exclude params
@@ -39,4 +42,5 @@ public class DataManagerImpl implements DataManager {
     private Boolean isNetworkAvailable() {
         return mNetworkInfo != null && mNetworkInfo.isConnectedOrConnecting();
     }
+
 }

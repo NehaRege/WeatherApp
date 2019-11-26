@@ -54,6 +54,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private MainPresenter mMainPresenter;
     private NetworkInfo mNetworkInfo;
 
+    // TODO: Save location in SharedPrefs
+    public static double latitude = 40.7128;
+    public static double longitude = 74.0060;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +68,25 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         setToolbar();
         setUpMVP();
+//        mMainPresenter.getWeatherForecast(latitude, longitude);
+        mMainPresenter.getWeatherForecast(40.7128, 74.0060);
     }
 
     @Override
     public void displayForecast(Forecast forecast) {
+        currentHigh.setText(forecast.currently.summary);
+        currentLow.setText("low");
+    }
 
+    @Override
+    public void displayDateAndTime() {
+        date.setText("date");
+        time.setText("time");
+    }
+
+    @Override
+    public void displayLocation() {
+        location.setText("Location");
     }
 
     @Override

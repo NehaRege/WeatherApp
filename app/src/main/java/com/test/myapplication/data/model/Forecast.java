@@ -26,4 +26,18 @@ public class Forecast {
     @SerializedName("offset")
     public Integer offset;
 
+    @Override
+    public String toString() {
+        return "Forecast{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", timezone='" + timezone + '\'' +
+                ", currently=" + currently +
+                ", hourly=" + hourly +
+                ", daily=" + daily +
+                ", alerts=" + alerts +
+                ", flags=" + flags +
+                ", offset=" + offset +
+                '}';
+    }
 }

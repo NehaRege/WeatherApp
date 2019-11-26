@@ -21,11 +21,12 @@ public class MainPresenterImpl implements MainPresenter {
 
     public MainPresenterImpl(MainView mMainView, NetworkInfo networkInfo) {
         this.mMainView = mMainView;
-        mDataManager = new DataManagerImpl();
+        mDataManager = new DataManagerImpl(networkInfo);
     }
 
     @Override
-    public void getWeatherForecast() {
+    public void getWeatherForecast(double latitude, double longitude) {
+        mObservable = mDataManager.getWeatherForecast(latitude, longitude);
 
         mObservable.subscribe(new Observer<Forecast>() {
             @Override
@@ -36,6 +37,9 @@ public class MainPresenterImpl implements MainPresenter {
             @Override
             public void onNext(Forecast forecast) {
                 mForecast = forecast;
+
+                mMainView.hideErrorView();
+                mMainView.isLoading(false);
                 mMainView.displayForecast(forecast);
             }
 
@@ -56,7 +60,7 @@ public class MainPresenterImpl implements MainPresenter {
     public void onErrorViewClick() {
         mMainView.hideErrorView();
         mMainView.isLoading(true);
-        getWeatherForecast();
+        getWeatherForecast(MainActivity.latitude, MainActivity.longitude);
     }
 
     @Override
