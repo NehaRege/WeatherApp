@@ -1,6 +1,10 @@
 package com.test.myapplication.screen.main;
 
-public class MainPresenter {
+public interface MainPresenter {
 
+    void getWeatherForecast();
 
+    void onErrorViewClick();
+
+    void onWeatherForecastViewClick();
 }

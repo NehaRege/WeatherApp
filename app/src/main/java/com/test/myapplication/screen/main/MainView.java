@@ -12,7 +12,7 @@ public interface MainView {
 
     void hideErrorView();
 
-    void goToForecastDetails();
+    void showForecastDetailScreen();
 
 
 }

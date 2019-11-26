@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -19,6 +20,7 @@ import com.test.myapplication.screen.detail.DetailActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements MainView {
     private static String TAG = "MainActivity";
@@ -27,8 +29,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     Toolbar toolbar;
     @BindView(R.id.mainLayout)
     ConstraintLayout mainLayout;
-    @BindView(R.id.weatherCard)
-    CardView weatherCard;
+    @BindView(R.id.weatherForecastView)
+    CardView weatherForecastView;
     @BindView(R.id.errorView)
     CardView errorView;
     @BindView(R.id.progressBar)
@@ -57,34 +59,44 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         setToolbar();
         setUpMVP();
-
     }
 
     @Override
     public void displayForecast(Forecast forecast) {
 
-
     }
 
     @Override
     public void isLoading(boolean isLoading) {
-
+        if (isLoading) {
+            progressBar.setVisibility(View.VISIBLE);
+            errorView.setVisibility(View.GONE);
+            mainLayout.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void showErrorView() {
-
+        errorView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideErrorView() {
-
+        errorView.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void goToForecastDetails() {
+    public void showForecastDetailScreen() {
         Intent intent = new Intent(this, DetailActivity.class);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.weatherForecastView)
+    void onWeatherForecastViewClick() {
+        Log.d(TAG, "onWeatherForecastViewClick: ");
+        mMainPresenter.onWeatherForecastViewClick();
     }
 
     private void setToolbar() {
@@ -94,5 +106,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     private void setUpMVP() {
+        mMainPresenter = new MainPresenterImpl(this);
     }
 }
