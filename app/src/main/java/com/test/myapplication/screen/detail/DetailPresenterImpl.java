@@ -8,12 +8,10 @@ import com.test.myapplication.data.model.Forecast;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class DetailPresenterImpl implements DetailPresenter {
     private static String TAG = "DetailPresenterImpl";
 
     private List<Data> mHourlyForecastList;
-
     private DetailView mDetailView;
     private DataManager mDataManager;
 
