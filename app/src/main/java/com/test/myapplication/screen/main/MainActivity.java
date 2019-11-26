@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @BindView(R.id.mainToolbar)
     Toolbar toolbar;
-    @BindView(R.id.mainLayout)
-    ConstraintLayout mainLayout;
+    //    @BindView(R.id.mainLayout)
+//    ConstraintLayout mainLayout;
     @BindView(R.id.weatherForecastView)
     ConstraintLayout weatherForecastView;
     @BindView(R.id.errorView)
@@ -92,10 +92,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         initLocation();
 
-        //TODO: check error view click
-        errorView.setOnClickListener(view -> {
-            Log.d(TAG, "onClick: ");
-        });
+//        //TODO: check error view click
+//        errorView.setOnClickListener(view -> {
+//            Log.d(TAG, "onClick: ");
+//        });
     }
 
     @Override
@@ -203,11 +203,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mMainPresenter.onWeatherForecastViewClick();
     }
 
-//    @OnClick(R.id.errorView)
-//    void onErrorViewCardClick() {
-//        Log.d(TAG, "onErrorViewCardClick: ");
-//        mMainPresenter.onErrorViewClick();
-//    }
+    @OnClick(R.id.errorView)
+    void onErrorViewCardClick() {
+        Log.d(TAG, "onErrorViewCardClick: ");
+        mMainPresenter.onErrorViewClick();
+    }
 
     private void setToolbar() {
         toolbar.setTitle(R.string.app_name);
