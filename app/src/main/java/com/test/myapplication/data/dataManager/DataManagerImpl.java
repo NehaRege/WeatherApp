@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.test.myapplication.api.ApiClient;
 import com.test.myapplication.api.ApiService;
 import com.test.myapplication.data.model.Forecast;
+import com.test.myapplication.data.model.Location.Location;
 import com.test.myapplication.util.Constants;
 
 import io.reactivex.Observable;
@@ -40,14 +41,23 @@ public class DataManagerImpl implements DataManager {
     }
 
     @Override
+    public void saveLocation(Location location) {
+
+    }
+
+    @Override
     public Forecast getWeatherForecastFromSharedPrefs() {
         Gson gson = new Gson();
         String json = mSharedPreferences.getString(Constants.SHARED_PREFS_FORECAST_KEY, "");
         return gson.fromJson(json, Forecast.class);
     }
 
+    @Override
+    public Location getSavedLocation() {
+        return null;
+    }
 
-    public Observable<Forecast> getObservableForecast(double latitude, double longitude) {
+    private Observable<Forecast> getObservableForecast(double latitude, double longitude) {
         return ApiClient.getRetrofit()
                 .create(ApiService.class)
                 //TODO: Add exclude params
@@ -58,6 +68,10 @@ public class DataManagerImpl implements DataManager {
 
     private Boolean isNetworkAvailable() {
         return mNetworkInfo != null && mNetworkInfo.isConnectedOrConnecting();
+    }
+
+    private void saveLocation() {
+
     }
 
 }

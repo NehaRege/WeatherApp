@@ -6,4 +6,8 @@ public class Constants {
 
     //    SharedPreferences
     public static final String SHARED_PREFS_FORECAST_KEY = "sharedPrefsForecastKey";
+    public static final String SHARED_PREFS_LOCATION_KEY = "sharedPrefsForecastKey";
+
+    // Location Request ID
+    public static final int LOCATION_PERMISSION_ID = 12341;
 }
