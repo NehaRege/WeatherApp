@@ -74,8 +74,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void displayForecast(Forecast forecast) {
+        Log.d(TAG, "displayForecast: ");
         currentHigh.setText(forecast.currently.summary);
-        currentLow.setText("low");
+        currentLow.setText("low ---");
     }
 
     @Override
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void hideErrorView() {
-        errorView.setVisibility(View.VISIBLE);
+        errorView.setVisibility(View.GONE);
     }
 
     @Override

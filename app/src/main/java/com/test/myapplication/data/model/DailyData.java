@@ -8,7 +8,7 @@ public class DailyData {
 
     @SerializedName("time")
     @Expose
-    public Integer time;
+    public long time;
     @SerializedName("summary")
     @Expose
     public String summary;
@@ -17,10 +17,10 @@ public class DailyData {
     public String icon;
     @SerializedName("sunriseTime")
     @Expose
-    public Integer sunriseTime;
+    public long sunriseTime;
     @SerializedName("sunsetTime")
     @Expose
-    public Integer sunsetTime;
+    public long sunsetTime;
     @SerializedName("moonPhase")
     @Expose
     public Double moonPhase;
@@ -32,7 +32,7 @@ public class DailyData {
     public Double precipIntensityMax;
     @SerializedName("precipIntensityMaxTime")
     @Expose
-    public Integer precipIntensityMaxTime;
+    public long precipIntensityMaxTime;
     @SerializedName("precipProbability")
     @Expose
     public Double precipProbability;
@@ -44,25 +44,25 @@ public class DailyData {
     public Double temperatureHigh;
     @SerializedName("temperatureHighTime")
     @Expose
-    public Integer temperatureHighTime;
+    public long temperatureHighTime;
     @SerializedName("temperatureLow")
     @Expose
     public Double temperatureLow;
     @SerializedName("temperatureLowTime")
     @Expose
-    public Integer temperatureLowTime;
+    public long temperatureLowTime;
     @SerializedName("apparentTemperatureHigh")
     @Expose
     public Double apparentTemperatureHigh;
     @SerializedName("apparentTemperatureHighTime")
     @Expose
-    public Integer apparentTemperatureHighTime;
+    public long apparentTemperatureHighTime;
     @SerializedName("apparentTemperatureLow")
     @Expose
     public Double apparentTemperatureLow;
     @SerializedName("apparentTemperatureLowTime")
     @Expose
-    public Integer apparentTemperatureLowTime;
+    public long apparentTemperatureLowTime;
     @SerializedName("dewPoint")
     @Expose
     public Double dewPoint;
@@ -80,7 +80,7 @@ public class DailyData {
     public Double windGust;
     @SerializedName("windGustTime")
     @Expose
-    public Integer windGustTime;
+    public long windGustTime;
     @SerializedName("windBearing")
     @Expose
     public Integer windBearing;
@@ -92,7 +92,7 @@ public class DailyData {
     public Integer uvIndex;
     @SerializedName("uvIndexTime")
     @Expose
-    public Integer uvIndexTime;
+    public long uvIndexTime;
     @SerializedName("visibility")
     @Expose
     public Double visibility;
@@ -104,24 +104,24 @@ public class DailyData {
     public Double temperatureMin;
     @SerializedName("temperatureMinTime")
     @Expose
-    public Integer temperatureMinTime;
+    public long temperatureMinTime;
     @SerializedName("temperatureMax")
     @Expose
     public Double temperatureMax;
     @SerializedName("temperatureMaxTime")
     @Expose
-    public Integer temperatureMaxTime;
+    public long temperatureMaxTime;
     @SerializedName("apparentTemperatureMin")
     @Expose
     public Double apparentTemperatureMin;
     @SerializedName("apparentTemperatureMinTime")
     @Expose
-    public Integer apparentTemperatureMinTime;
+    public long apparentTemperatureMinTime;
     @SerializedName("apparentTemperatureMax")
     @Expose
     public Double apparentTemperatureMax;
     @SerializedName("apparentTemperatureMaxTime")
     @Expose
-    public Integer apparentTemperatureMaxTime;
+    public long apparentTemperatureMaxTime;
 
 }
