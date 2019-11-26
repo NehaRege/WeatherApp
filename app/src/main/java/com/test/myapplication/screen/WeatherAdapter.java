@@ -62,11 +62,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
         }
 
-
-        //TODO: Format temperature
         setIcon(data.icon != null ? data.icon : "", holder.weatherIcon);
-
-        holder.temperature.setText(data.temperature + " \u2109");
+        holder.temperature.setText(mContext.getString(R.string.temperatureWithFahrenheit, String.valueOf(data.temperature)));
         holder.hour.setText(TimeUtils.timestampToHour(data.time));
     }
 

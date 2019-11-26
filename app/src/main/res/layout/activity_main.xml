@@ -76,34 +76,34 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:padding="30dp"
-                    android:text="New York"
                     android:textSize="30sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/weatherIcon" />
+                    app:layout_constraintTop_toBottomOf="@id/weatherIcon"
+                    tools:text="New York" />
 
                 <TextView
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Tues, 26 Nov"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toStartOf="@id/time"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/location" />
+                    app:layout_constraintTop_toBottomOf="@id/location"
+                    tools:text="Tues, 26 Nov" />
 
                 <TextView
                     android:id="@+id/time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="11:30 AM"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@id/date"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/date"
-                    app:layout_constraintTop_toTopOf="@id/date" />
+                    app:layout_constraintTop_toTopOf="@id/date"
+                    tools:text="11:30 AM" />
 
                 <TextView
                     android:id="@+id/temp"
@@ -112,37 +112,29 @@
                     android:layout_marginTop="40dp"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="45 F"
                     android:textSize="40sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/time" />
+                    app:layout_constraintTop_toBottomOf="@id/time"
+                    tools:text="45 F" />
 
                 <TextView
-                    android:id="@+id/currentHigh"
+                    android:id="@+id/highLowTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:gravity="center"
                     android:padding="10dp"
-                    android:text="current high"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/temp" />
-
-                <TextView
-                    android:id="@+id/currentLow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
-                    android:text="current low"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/currentHigh" />
+                    app:layout_constraintTop_toBottomOf="@id/temp"
+                    tools:text="The high is 75 and low is 65" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

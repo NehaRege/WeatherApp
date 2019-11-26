@@ -5,6 +5,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.net.NetworkInfo;
 import android.util.Log;
+import android.util.TimeUtils;
 
 import com.test.myapplication.data.PreferencesManager;
 import com.test.myapplication.data.dataManager.DataManager;
@@ -13,6 +14,7 @@ import com.test.myapplication.data.model.Data;
 import com.test.myapplication.data.model.Forecast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -29,6 +31,8 @@ public class MainPresenterImpl implements MainPresenter {
     private Geocoder mGeocoder;
 
     private Observable<Forecast> mObservable;
+    private double mMinTemp;
+    private double mMaxTemp;
 
     public MainPresenterImpl(MainView mainView, NetworkInfo networkInfo, SharedPreferences sharedPreferences, Geocoder geocoder) {
         mMainView = mainView;
@@ -55,11 +59,13 @@ public class MainPresenterImpl implements MainPresenter {
                 PreferencesManager.saveForecast(forecast);
                 Log.d(TAG, "onNext: hourly list size --------> " + forecast.hourly.data.size());
 
+                getMinMaxTemp(forecast);
+
                 mMainView.hideErrorView();
                 mMainView.isLoading(false);
                 mMainView.showForecastView();
                 findAddress(latitude, longitude);
-                mMainView.displayForecast(forecast);
+                mMainView.displayForecast(forecast, mMinTemp, mMaxTemp);
 
             }
 
@@ -122,6 +128,14 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override
     public void getMinMaxTemp(Forecast forecast) {
+        List<Double> intList = new ArrayList<>();
+        List<Data> dataList = (forecast.hourly != null && forecast.hourly.data != null) ? forecast.hourly.data : new ArrayList<>();
 
+        for (Data data : dataList) {
+            intList.add(data.temperature);
+        }
+
+        mMaxTemp = Collections.max(intList);
+        mMinTemp = Collections.min(intList);
     }
 }

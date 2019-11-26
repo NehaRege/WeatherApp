@@ -7,7 +7,7 @@ public interface MainView {
 
     void getWeatherForecast(double latitude, double longitude);
 
-    void displayForecast(Forecast forecast);
+    void displayForecast(Forecast forecast, double minTemp, double MaxTemp);
 
     void displayLocation(String location);
 

@@ -26,7 +26,6 @@ public class DetailPresenterImpl implements DetailPresenter {
     public DetailPresenterImpl(DetailView detailView, NetworkInfo networkInfo, SharedPreferences sharedPreferences) {
         this.mDetailView = detailView;
         mDataManager = new DataManagerImpl(networkInfo, sharedPreferences);
-        getHourlyForecastList();
     }
 
     @Override

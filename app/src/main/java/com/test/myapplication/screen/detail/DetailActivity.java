@@ -6,7 +6,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -32,9 +31,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     RecyclerView recyclerView;
 
     private WeatherAdapter mWeatherAdapter;
-
     private DetailPresenter mDetailPresenter;
-    private List<Data> mHourlyForecastList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +40,13 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         ButterKnife.bind(this);
 
         setUpMVP();
+        mDetailPresenter.getHourlyForecastList();
         setToolbar();
         setLayoutManager();
     }
 
     @Override
     public void displayHourlyForecast(List<Data> dataList) {
-        mHourlyForecastList = dataList;
         mWeatherAdapter = new WeatherAdapter(dataList, this);
         recyclerView.setAdapter(mWeatherAdapter);
         Log.d(TAG, "displayHourlyForecast: list size -----------> " + dataList.size());
@@ -75,18 +72,10 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     }
 
     private void setToolbar() {
-        toolbar.setTitle("Hourly Forecast");
+        toolbar.setTitle(getString(R.string.hourly_forecast));
         toolbar.setTitleTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-
     }
 
     @Override
