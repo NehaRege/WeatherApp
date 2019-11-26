@@ -2,6 +2,7 @@ package com.test.myapplication.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class TimeUtils {
 
@@ -27,5 +28,10 @@ public class TimeUtils {
         Date date = new Date(timestamp * 1000L);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("h a");
         return simpleDateFormat.format(date);
+    }
+
+    public static long getTimeDiff(long timeUpdate, long timeNow, TimeUnit timeUnit) {
+        long diffInMillies = Math.abs(timeNow - timeUpdate);
+        return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 }

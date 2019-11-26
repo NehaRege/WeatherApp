@@ -9,9 +9,12 @@ import android.util.Log;
 import com.test.myapplication.data.PreferencesManager;
 import com.test.myapplication.data.dataManager.DataManager;
 import com.test.myapplication.data.dataManager.DataManagerImpl;
+import com.test.myapplication.data.model.Data;
 import com.test.myapplication.data.model.Forecast;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -115,5 +118,10 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void saveLocation(double latitude, double longitude, String name) {
         PreferencesManager.saveLocation(latitude, longitude, name);
+    }
+
+    @Override
+    public void getMinMaxTemp(Forecast forecast) {
+
     }
 }
