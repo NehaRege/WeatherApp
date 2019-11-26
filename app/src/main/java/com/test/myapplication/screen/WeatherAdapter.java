@@ -1,7 +1,6 @@
 package com.test.myapplication.screen;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +14,6 @@ import com.test.myapplication.R;
 import com.test.myapplication.data.model.Data;
 import com.test.myapplication.util.TimeUtils;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder> {
@@ -57,10 +54,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
         double currentTime = System.currentTimeMillis() / 1000;
 
+        //TODO: check this
         if (currentTime > data.time) {
-            holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.lightBlue));
+            holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.grey));
         } else {
-            holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.colorWhite));
+            holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.lightBlue));
 
         }
 

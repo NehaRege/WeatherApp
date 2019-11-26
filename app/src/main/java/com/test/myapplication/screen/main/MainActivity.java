@@ -3,7 +3,6 @@ package com.test.myapplication.screen.main;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -52,13 +51,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @BindView(R.id.mainLayout)
     ConstraintLayout mainLayout;
     @BindView(R.id.weatherForecastView)
-    CardView weatherForecastView;
+    ConstraintLayout weatherForecastView;
     @BindView(R.id.errorView)
     View errorView;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     @BindView(R.id.location)
     TextView location;
+    @BindView(R.id.temp)
+    TextView summary;
     @BindView(R.id.date)
     TextView date;
     @BindView(R.id.time)
@@ -113,8 +114,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
     public void displayForecast(Forecast forecast) {
         Log.d(TAG, "displayForecast: ");
 
+        summary.setText(forecast.currently.temperature + " \u2109");
+
         currentHigh.setText(forecast.currently.summary);
-        currentLow.setText("low ---");
+        currentLow.setText("low");
 
         // date time
         time.setText(TimeUtils.timestampToDate(forecast.currently.time));
