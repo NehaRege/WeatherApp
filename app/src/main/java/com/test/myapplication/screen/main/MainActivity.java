@@ -275,26 +275,26 @@ public class MainActivity extends AppCompatActivity implements MainView {
             case "clear-night":
                 weatherIcon.setImageResource(R.drawable.clear_night);
                 break;
+            case "rain":
+                weatherIcon.setImageResource(R.drawable.rain);
+                break;
+            case "snow":
+            case "hail":
+                weatherIcon.setImageResource(R.drawable.snow);
+                break;
+            case "sleet":
+            case "fog":
+            case "wind":
+            case "thunderstorm":
+            case "tornado":
+            case "cloudy":
+                weatherIcon.setImageResource(R.drawable.storm);
+                break;
             case "partly-cloudy-day":
                 weatherIcon.setImageResource(R.drawable.cloudy_day);
                 break;
             case "partly-cloudy-night":
                 weatherIcon.setImageResource(R.drawable.cloudy_night);
-                break;
-            case "rain":
-                weatherIcon.setImageResource(R.drawable.rain);
-                break;
-            case "sleet":
-            case "thunderstorm":
-            case "cloudy":
-            case "fog":
-            case "wind":
-            case "tornado":
-                weatherIcon.setImageResource(R.drawable.storm);
-                break;
-            case "snow":
-            case "hail":
-                weatherIcon.setImageResource(R.drawable.snow);
                 break;
             default:
                 weatherIcon.setImageResource(R.drawable.cloud);

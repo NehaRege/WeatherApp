@@ -2,7 +2,6 @@ package com.test.myapplication.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -19,7 +18,6 @@ public class PreferencesManager {
     public static void init(Context context) {
         if (sharedPrefsInstance == null) {
             sharedPrefsInstance = context.getSharedPreferences(Constants.SHARED_PREFS_KEY, 0);
-//            sharedPrefsInstance = PreferenceManager.getDefaultSharedPreferences(context);
         }
     }
 
@@ -53,18 +51,5 @@ public class PreferencesManager {
         String json = sharedPrefsInstance.getString(Constants.SHARED_PREFS_LOCATION_KEY, "");
         return gson.fromJson(json, Location.class);
     }
-
-//    public static double getSavedLatitude() {
-//        Gson gson = new Gson();
-//        String json = sharedPrefsInstance.getString(Constants.SHARED_PREFS_FORECAST_KEY, "");
-//        return gson.fromJson(json, Forecast.class);
-//    }
-//
-//    public static double getSavedLongitude() {
-//        Gson gson = new Gson();
-//        String json = sharedPrefsInstance.getString(Constants.SHARED_PREFS_FORECAST_KEY, "");
-//        return gson.fromJson(json, Forecast.class);
-//    }
-
 
 }
