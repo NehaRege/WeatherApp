@@ -3,5 +3,5 @@
 
     <!--    Network Error   -->
     <string name="network_error_title">Oops..could not load weather</string>
-    <string name="network_error_subtitle">Please tap here to try again.</string>
+    <string name="network_error_subtitle">Tap here to try again.</string>
 </resources>

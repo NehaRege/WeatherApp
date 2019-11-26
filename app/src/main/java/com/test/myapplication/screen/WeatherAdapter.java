@@ -47,6 +47,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
     public void onBindViewHolder(@NonNull WeatherViewHolder holder, int position) {
         Data data = mDataList.get(position);
 
+        //TODO: Add images
         Glide.with(holder.itemView)
                 .load(data.icon)
                 .centerCrop()

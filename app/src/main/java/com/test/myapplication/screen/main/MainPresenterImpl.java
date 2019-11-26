@@ -39,7 +39,6 @@ public class MainPresenterImpl implements MainPresenter {
             @Override
             public void onNext(Forecast forecast) {
                 //TODO: create a separate shared prefs manager
-//                mDataManager.saveWeatherForecastToSharedPrefs(forecast);
                 PreferencesManager.saveForecast(forecast);
                 Log.d(TAG, "onNext: hourly list size --------> " + forecast.hourly.data.size());
 
@@ -50,6 +49,8 @@ public class MainPresenterImpl implements MainPresenter {
 
             @Override
             public void onError(Throwable e) {
+                mMainView.isLoading(false);
+                mMainView.hideForecast();
                 mMainView.showErrorView();
                 e.printStackTrace();
             }

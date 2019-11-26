@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @BindView(R.id.weatherForecastView)
     CardView weatherForecastView;
     @BindView(R.id.errorView)
-    CardView errorView;
+    View errorView;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
     @BindView(R.id.location)
@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
     ImageView weatherIcon;
 
     private MainPresenter mMainPresenter;
-    private NetworkInfo mNetworkInfo;
 
     // TODO: Save location in SharedPrefs
     public static double latitude = 40.7128;
@@ -72,8 +71,18 @@ public class MainActivity extends AppCompatActivity implements MainView {
         PreferencesManager.init(getApplicationContext());
 
         setUpMVP();
+
+        //TODO: get location
 //        mMainPresenter.getWeatherForecast(latitude, longitude);
         mMainPresenter.getWeatherForecast(40.7128, 74.0060);
+
+        //TODO: check error view click
+        errorView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: ");
+            }
+        });
     }
 
     @Override
@@ -81,6 +90,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
         Log.d(TAG, "displayForecast: ");
         currentHigh.setText(forecast.currently.summary);
         currentLow.setText("low ---");
+    }
+
+    @Override
+    public void hideForecast() {
+        weatherForecastView.setVisibility(View.GONE);
     }
 
     @Override
@@ -125,6 +139,12 @@ public class MainActivity extends AppCompatActivity implements MainView {
     void onWeatherForecastViewClick() {
         Log.d(TAG, "onWeatherForecastViewClick: ");
         mMainPresenter.onWeatherForecastViewClick();
+    }
+
+    @OnClick(R.id.errorView)
+    void onErrorViewCardClick() {
+        Log.d(TAG, "onErrorViewCardClick: ");
+        mMainPresenter.onErrorViewClick();
     }
 
     private void setToolbar() {

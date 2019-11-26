@@ -2,7 +2,6 @@ package com.test.myapplication.data.dataManager;
 
 import android.content.SharedPreferences;
 import android.net.NetworkInfo;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.test.myapplication.api.ApiClient;
@@ -28,13 +27,11 @@ public class DataManagerImpl implements DataManager {
 
     @Override
     public Observable<Forecast> getWeatherForecast(double latitude, double longitude) {
-        Log.d(TAG, "getWeatherForecast: ");
         return getObservableForecast(latitude, longitude);
     }
 
     @Override
     public void saveWeatherForecastToSharedPrefs(Forecast forecast) {
-        Log.d(TAG, "saveWeatherForecastToSharedPrefs: ");
         SharedPreferences.Editor prefsEditor = mSharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(forecast);
@@ -44,7 +41,6 @@ public class DataManagerImpl implements DataManager {
 
     @Override
     public Forecast getWeatherForecastFromSharedPrefs() {
-        Log.d(TAG, "getWeatherForecastFromSharedPrefs: ");
         Gson gson = new Gson();
         String json = mSharedPreferences.getString(Constants.SHARED_PREFS_FORECAST_KEY, "");
         return gson.fromJson(json, Forecast.class);
@@ -52,7 +48,6 @@ public class DataManagerImpl implements DataManager {
 
 
     public Observable<Forecast> getObservableForecast(double latitude, double longitude) {
-        Log.d(TAG, "getObservableForecast: ");
         return ApiClient.getRetrofit()
                 .create(ApiService.class)
                 //TODO: Add exclude params

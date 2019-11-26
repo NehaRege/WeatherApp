@@ -6,6 +6,8 @@ public interface MainView {
 
     void displayForecast(Forecast forecast);
 
+    void hideForecast();
+
     void displayDateAndTime();
 
     void displayLocation();
