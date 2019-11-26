@@ -22,6 +22,7 @@ import com.test.myapplication.R;
 import com.test.myapplication.data.PreferencesManager;
 import com.test.myapplication.data.model.Forecast;
 import com.test.myapplication.screen.detail.DetailActivity;
+import com.test.myapplication.util.TimeUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -90,6 +91,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
         Log.d(TAG, "displayForecast: ");
         currentHigh.setText(forecast.currently.summary);
         currentLow.setText("low ---");
+
+        // date time
+        time.setText(TimeUtils.timestampToDate(forecast.currently.time));
+        date.setText(TimeUtils.timestampToTime(forecast.currently.time));
     }
 
     @Override
@@ -99,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void displayDateAndTime() {
-        date.setText("date");
         time.setText("time");
     }
 

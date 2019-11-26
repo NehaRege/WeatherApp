@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.test.myapplication.R;
 import com.test.myapplication.data.model.Data;
+import com.test.myapplication.util.TimeUtils;
 
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
         //TODO: Format time and temperature
         holder.temperature.setText(data.temperature + "");
-        holder.hour.setText(data.time + "");
+        holder.hour.setText(TimeUtils.timestampToHour(data.time));
     }
 
     @Override
