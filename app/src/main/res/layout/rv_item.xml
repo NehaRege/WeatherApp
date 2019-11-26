@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@color/darkBlue"
         android:orientation="horizontal"
+        android:alpha="0.5"
         android:padding="10dp">
 
         <TextView

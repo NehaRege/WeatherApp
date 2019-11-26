@@ -54,7 +54,6 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
         double currentTime = System.currentTimeMillis() / 1000;
 
-        //TODO: check this
         if (currentTime > data.time) {
             holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.darkBlue));
         } else {

@@ -56,8 +56,8 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     }
 
     private void setToolbar() {
-        toolbar.setTitle(getString(R.string.hourly_forecast));
-        toolbar.setTitleTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
+        toolbar.setTitle("");
+//        toolbar.setTitleTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorWhite));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
