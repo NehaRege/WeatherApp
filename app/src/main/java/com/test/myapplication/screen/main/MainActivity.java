@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -130,12 +131,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     private void setUpMVP() {
-        mMainPresenter = new MainPresenterImpl(this, getNetworkInfo());
+        mMainPresenter = new MainPresenterImpl(this, getNetworkInfo(), getSharedPreferences());
     }
 
     private NetworkInfo getNetworkInfo() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         return connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
+    }
+
+    private SharedPreferences getSharedPreferences() {
+        return getPreferences(MODE_PRIVATE);
     }
 }

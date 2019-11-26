@@ -34,6 +34,7 @@ public class DataManagerImpl implements DataManager {
 
     @Override
     public void saveWeatherForecastToSharedPrefs(Forecast forecast) {
+        Log.d(TAG, "saveWeatherForecastToSharedPrefs: ");
         SharedPreferences.Editor prefsEditor = mSharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(forecast);
@@ -43,6 +44,7 @@ public class DataManagerImpl implements DataManager {
 
     @Override
     public Forecast getWeatherForecastFromSharedPrefs() {
+        Log.d(TAG, "getWeatherForecastFromSharedPrefs: ");
         Gson gson = new Gson();
         String json = mSharedPreferences.getString(Constants.SHARED_PREFS_FORECAST_KEY, "");
         return gson.fromJson(json, Forecast.class);
