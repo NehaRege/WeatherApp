@@ -2,6 +2,7 @@ package com.test.myapplication.screen.detail;
 
 import android.content.SharedPreferences;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import com.test.myapplication.data.PreferencesManager;
 import com.test.myapplication.data.dataManager.DataManager;
@@ -41,5 +42,6 @@ public class DetailPresenterImpl implements DetailPresenter {
 
     private void getForecastFromSharedPrefs() {
         mForecast = PreferencesManager.getSavedForecast();
+        Log.d(TAG, "getForecastFromSharedPrefs: ");
     }
 }

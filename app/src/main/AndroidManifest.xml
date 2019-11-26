@@ -3,6 +3,7 @@
     package="com.test.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <!--    this is to check network status -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

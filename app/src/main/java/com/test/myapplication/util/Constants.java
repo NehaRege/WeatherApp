@@ -5,5 +5,10 @@ public class Constants {
     public static final String API_KEY = "7d213bc69686b2c1ca60cc26f783fafb";
 
     //    SharedPreferences
+    public static final String SHARED_PREFS_KEY = "sharedPrefsKey";
     public static final String SHARED_PREFS_FORECAST_KEY = "sharedPrefsForecastKey";
+    public static final String SHARED_PREFS_LOCATION_KEY = "sharedPrefsLocationKey";
+
+    // Location Request ID
+    public static final int LOCATION_PERMISSION_ID = 12341;
 }
