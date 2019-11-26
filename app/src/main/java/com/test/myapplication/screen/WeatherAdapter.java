@@ -17,11 +17,6 @@ import java.util.List;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder> {
     private List<Data> mDataList;
-    private static OnRecyclerViewItemClickListener onItemClickListener;
-
-    public interface OnRecyclerViewItemClickListener {
-        void onItemClick(int position);
-    }
 
     static class WeatherViewHolder extends RecyclerView.ViewHolder {
         ImageView weatherIcon;
@@ -33,14 +28,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
             weatherIcon = itemView.findViewById(R.id.weatherIcon);
             hour = itemView.findViewById(R.id.hour);
             temperature = itemView.findViewById(R.id.temperature);
-
-            itemView.setOnClickListener(view -> onItemClickListener.onItemClick(getLayoutPosition()));
         }
     }
 
-    public WeatherAdapter(List<Data> dataList, OnRecyclerViewItemClickListener listener) {
+    public WeatherAdapter(List<Data> dataList) {
         mDataList = dataList;
-        onItemClickListener = listener;
     }
 
     @NonNull
