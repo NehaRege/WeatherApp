@@ -47,7 +47,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     @Override
     public void displayHourlyForecast(List<Data> dataList) {
         mHourlyForecastList = dataList;
-        mWeatherAdapter = new WeatherAdapter(dataList);
+        mWeatherAdapter = new WeatherAdapter(dataList, this);
         recyclerView.setAdapter(mWeatherAdapter);
         Log.d(TAG, "displayHourlyForecast: list size -----------> " + dataList.size());
     }

@@ -12,9 +12,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
@@ -41,9 +39,6 @@ import com.test.myapplication.data.model.Forecast;
 import com.test.myapplication.screen.detail.DetailActivity;
 import com.test.myapplication.util.Constants;
 import com.test.myapplication.util.TimeUtils;
-
-import java.io.IOException;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -124,6 +119,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
         // date time
         time.setText(TimeUtils.timestampToDate(forecast.currently.time));
         date.setText(TimeUtils.timestampToTime(forecast.currently.time));
+
+        // weather icon
+        setIcon(forecast.currently != null ? forecast.currently.icon : "");
     }
 
     @Override
@@ -318,5 +316,39 @@ public class MainActivity extends AppCompatActivity implements MainView {
             Log.d(TAG, "onLocationResult: LONGITUDE ===============> " + location.getLongitude());
         }
     };
+
+    private void setIcon(String icon) {
+        switch (icon) {
+            case "clear-day":
+                weatherIcon.setImageResource(R.drawable.sun);
+                break;
+            case "clear-night":
+                weatherIcon.setImageResource(R.drawable.clear_night);
+                break;
+            case "partly-cloudy-day":
+                weatherIcon.setImageResource(R.drawable.cloudy_day);
+                break;
+            case "partly-cloudy-night":
+                weatherIcon.setImageResource(R.drawable.cloudy_night);
+                break;
+            case "rain":
+                weatherIcon.setImageResource(R.drawable.rain);
+                break;
+            case "sleet":
+            case "thunderstorm":
+            case "cloudy":
+            case "fog":
+            case "wind":
+            case "tornado":
+                weatherIcon.setImageResource(R.drawable.storm);
+                break;
+            case "snow":
+            case "hail":
+                weatherIcon.setImageResource(R.drawable.snow);
+                break;
+            default:
+                weatherIcon.setImageResource(R.drawable.cloud);
+        }
+    }
 
 }
