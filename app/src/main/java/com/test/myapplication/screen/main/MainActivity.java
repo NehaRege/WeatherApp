@@ -97,18 +97,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         initLocation();
 
-
-        //TODO: get location
-//        mMainPresenter.getWeatherForecast(latitude, longitude);
-//        mMainPresenter.getWeatherForecast(40.7128, 74.0060);
-
         //TODO: check error view click
-        errorView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "onClick: ");
-            }
-        });
+        errorView.setOnClickListener(view -> Log.d(TAG, "onClick: "));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (checkPermissions()) {
+            getLastLocation();
+        }
     }
 
     @Override
@@ -126,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         // date time
         time.setText(TimeUtils.timestampToDate(forecast.currently.time));
         date.setText(TimeUtils.timestampToTime(forecast.currently.time));
-        weatherForecastView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -135,18 +132,23 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
+    public void showForecastView() {
+        weatherForecastView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void hideForecastView() {
-        weatherForecastView.setVisibility(View.GONE);
+        weatherForecastView.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void isLoading(boolean isLoading) {
         if (isLoading) {
             progressBar.setVisibility(View.VISIBLE);
-            errorView.setVisibility(View.GONE);
-            mainLayout.setVisibility(View.GONE);
+            errorView.setVisibility(View.INVISIBLE);
+            weatherForecastView.setVisibility(View.INVISIBLE);
         } else {
-            progressBar.setVisibility(View.GONE);
+            progressBar.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -157,18 +159,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void hideErrorView() {
-        errorView.setVisibility(View.GONE);
+        errorView.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void goToForecastDetailScreen() {
         Intent intent = new Intent(this, DetailActivity.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void getCurrentLocation() {
-
     }
 
     @Override
@@ -321,28 +318,5 @@ public class MainActivity extends AppCompatActivity implements MainView {
             Log.d(TAG, "onLocationResult: LONGITUDE ===============> " + location.getLongitude());
         }
     };
-
-    private void displayLocation(double latitude, double longitude) {
-        Geocoder geocoder = new Geocoder(getApplicationContext());
-
-        try {
-            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            if (addresses.size() > 0) {
-                Address fetchedAddress = addresses.get(0);
-
-                if (fetchedAddress != null && fetchedAddress.getLocality() != null && !fetchedAddress.getLocality().isEmpty()) {
-                    mMainPresenter.saveLocation(latitude, longitude, fetchedAddress.getLocality());
-                    location.setText(fetchedAddress.getLocality());
-                }
-
-            } else {
-                location.setText(R.string.searching_address);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 
 }

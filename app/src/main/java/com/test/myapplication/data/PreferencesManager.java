@@ -18,12 +18,13 @@ public class PreferencesManager {
 
     public static void init(Context context) {
         if (sharedPrefsInstance == null) {
-            sharedPrefsInstance = PreferenceManager.getDefaultSharedPreferences(context);
+            sharedPrefsInstance = context.getSharedPreferences(Constants.SHARED_PREFS_KEY, 0);
+//            sharedPrefsInstance = PreferenceManager.getDefaultSharedPreferences(context);
         }
     }
 
     public static void saveForecast(Forecast forecast) {
-        Log.d(TAG, "saveForecast: ");
+        Log.d(TAG, "saveForecast: list size ------>  " + forecast.hourly.data.size());
         SharedPreferences.Editor prefsEditor = sharedPrefsInstance.edit();
         Gson gson = new Gson();
         String json = gson.toJson(forecast);

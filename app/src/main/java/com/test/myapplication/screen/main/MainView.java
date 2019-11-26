@@ -11,6 +11,8 @@ public interface MainView {
 
     void displayLocation(String location);
 
+    void showForecastView();
+
     void hideForecastView();
 
     void isLoading(boolean isLoading);
@@ -20,8 +22,6 @@ public interface MainView {
     void hideErrorView();
 
     void goToForecastDetailScreen();
-
-    void getCurrentLocation();
 
     boolean checkLocationPermissions();
 

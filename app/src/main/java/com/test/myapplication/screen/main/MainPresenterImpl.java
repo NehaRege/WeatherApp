@@ -36,6 +36,8 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void getWeatherForecast(double latitude, double longitude) {
         Log.d(TAG, "getWeatherForecast: ");
+        mMainView.isLoading(true);
+
         mObservable = mDataManager.getWeatherForecast(latitude, longitude);
 
         mObservable.subscribe(new Observer<Forecast>() {
@@ -52,6 +54,7 @@ public class MainPresenterImpl implements MainPresenter {
 
                 mMainView.hideErrorView();
                 mMainView.isLoading(false);
+                mMainView.showForecastView();
                 findAddress(latitude, longitude);
                 mMainView.displayForecast(forecast);
 
