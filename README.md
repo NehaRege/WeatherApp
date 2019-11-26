@@ -59,6 +59,7 @@ Added progress bar to display the loading circle for better UX so the user knows
 Moved all the strings to the string resources file which is useful for localization and also if you have to use the same string at multiple places. It makes the app look cleaner and easier to maintain.
 
 **Completed bonus feature**
+
 Filtering out items before current timestamp on the Detail screen. The times that have already passed have a dark blue background where as the other ones have a light blue background
 
 
