@@ -5,14 +5,20 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.test.myapplication.R;
+import com.test.myapplication.data.model.Data;
+
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity implements DetailView {
+    private static String TAG = "DetailActivity";
 
     private DetailPresenter mDetailPresenter;
+    private List<Data> mHourlyForecastList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +26,12 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         setContentView(R.layout.activity_detail);
 
         setUpMVP();
-
     }
 
     @Override
-    public void displayHourlyForecast() {
+    public void displayHourlyForecast(List<Data> dataList) {
+        mHourlyForecastList = dataList;
+        Log.d(TAG, "displayHourlyForecast: list size -----------> " + dataList.size());
 
     }
 
@@ -41,4 +48,5 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     private SharedPreferences getSharedPreferences() {
         return getPreferences(MODE_PRIVATE);
     }
+
 }

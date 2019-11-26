@@ -3,6 +3,7 @@ package com.test.myapplication.screen.detail;
 import android.content.SharedPreferences;
 import android.net.NetworkInfo;
 
+import com.test.myapplication.data.PreferencesManager;
 import com.test.myapplication.data.dataManager.DataManager;
 import com.test.myapplication.data.dataManager.DataManagerImpl;
 import com.test.myapplication.data.model.Data;
@@ -13,6 +14,7 @@ import java.util.List;
 
 
 public class DetailPresenterImpl implements DetailPresenter {
+    private static String TAG = "DetailPresenterImpl";
 
     private Forecast mForecast;
     private List<Data> mHourlyForecastList;
@@ -23,20 +25,21 @@ public class DetailPresenterImpl implements DetailPresenter {
     public DetailPresenterImpl(DetailView detailView, NetworkInfo networkInfo, SharedPreferences sharedPreferences) {
         this.mDetailView = detailView;
         mDataManager = new DataManagerImpl(networkInfo, sharedPreferences);
+        getHourlyForecastList();
     }
 
     @Override
-    public List<Data> getHourlyForecastList() {
+    public void getHourlyForecastList() {
         getForecastFromSharedPrefs();
         mHourlyForecastList = new ArrayList<>();
         if (mForecast != null && mForecast.hourly != null) {
             mHourlyForecastList = mForecast.hourly.data;
         }
 
-        return mHourlyForecastList;
+        mDetailView.displayHourlyForecast(mHourlyForecastList);
     }
 
     private void getForecastFromSharedPrefs() {
-        mForecast = mDataManager.getWeatherForecastFromSharedPrefs();
+        mForecast = PreferencesManager.getSavedForecast();
     }
 }

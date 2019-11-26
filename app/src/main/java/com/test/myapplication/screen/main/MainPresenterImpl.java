@@ -2,7 +2,9 @@ package com.test.myapplication.screen.main;
 
 import android.content.SharedPreferences;
 import android.net.NetworkInfo;
+import android.util.Log;
 
+import com.test.myapplication.data.PreferencesManager;
 import com.test.myapplication.data.dataManager.DataManager;
 import com.test.myapplication.data.dataManager.DataManagerImpl;
 import com.test.myapplication.data.model.Forecast;
@@ -37,7 +39,9 @@ public class MainPresenterImpl implements MainPresenter {
             @Override
             public void onNext(Forecast forecast) {
                 //TODO: create a separate shared prefs manager
-                mDataManager.saveWeatherForecastToSharedPrefs(forecast);
+//                mDataManager.saveWeatherForecastToSharedPrefs(forecast);
+                PreferencesManager.saveForecast(forecast);
+                Log.d(TAG, "onNext: hourly list size --------> " + forecast.hourly.data.size());
 
                 mMainView.hideErrorView();
                 mMainView.isLoading(false);

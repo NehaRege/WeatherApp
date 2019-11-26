@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.test.myapplication.R;
+import com.test.myapplication.data.PreferencesManager;
 import com.test.myapplication.data.model.Forecast;
 import com.test.myapplication.screen.detail.DetailActivity;
 
@@ -64,10 +65,12 @@ public class MainActivity extends AppCompatActivity implements MainView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.bind(this);
 
         setToolbar();
+
+        PreferencesManager.init(getApplicationContext());
+
         setUpMVP();
 //        mMainPresenter.getWeatherForecast(latitude, longitude);
         mMainPresenter.getWeatherForecast(40.7128, 74.0060);
