@@ -6,7 +6,10 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     ImageView weatherIcon;
 
     private MainPresenter mMainPresenter;
+    private NetworkInfo mNetworkInfo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +111,12 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     private void setUpMVP() {
-        mMainPresenter = new MainPresenterImpl(this);
+        mMainPresenter = new MainPresenterImpl(this, getNetworkInfo());
+    }
+
+    private NetworkInfo getNetworkInfo() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
     }
 }
