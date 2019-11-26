@@ -1,16 +1,17 @@
-package com.test.myapplication.screen;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.test.myapplication.screen.detail;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.test.myapplication.R;
 
-public class MainActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements DetailView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
 }
