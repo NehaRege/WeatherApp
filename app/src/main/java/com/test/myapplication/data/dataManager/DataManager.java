@@ -8,4 +8,8 @@ public interface DataManager {
 
     Observable<Forecast> getWeatherForecast(double latitude, double longitude);
 
+    void saveWeatherForecastToSharedPrefs(Forecast forecast);
+
+    Forecast getWeatherForecastFromSharedPrefs();
+
 }

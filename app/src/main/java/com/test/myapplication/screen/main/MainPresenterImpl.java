@@ -1,5 +1,6 @@
 package com.test.myapplication.screen.main;
 
+import android.content.SharedPreferences;
 import android.net.NetworkInfo;
 
 import com.test.myapplication.data.dataManager.DataManager;
@@ -17,11 +18,10 @@ public class MainPresenterImpl implements MainPresenter {
     private DataManager mDataManager;
 
     private Observable<Forecast> mObservable;
-    private Forecast mForecast;
 
-    public MainPresenterImpl(MainView mMainView, NetworkInfo networkInfo) {
+    public MainPresenterImpl(MainView mMainView, NetworkInfo networkInfo, SharedPreferences sharedPreferences) {
         this.mMainView = mMainView;
-        mDataManager = new DataManagerImpl(networkInfo);
+        mDataManager = new DataManagerImpl(networkInfo, sharedPreferences);
     }
 
     @Override
@@ -36,7 +36,8 @@ public class MainPresenterImpl implements MainPresenter {
 
             @Override
             public void onNext(Forecast forecast) {
-                mForecast = forecast;
+                //TODO: create a separate shared prefs manager
+                mDataManager.saveWeatherForecastToSharedPrefs(forecast);
 
                 mMainView.hideErrorView();
                 mMainView.isLoading(false);
