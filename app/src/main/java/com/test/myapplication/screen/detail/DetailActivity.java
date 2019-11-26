@@ -1,11 +1,6 @@
 package com.test.myapplication.screen.detail;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -49,21 +44,10 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     public void displayHourlyForecast(List<Data> dataList) {
         mWeatherAdapter = new WeatherAdapter(dataList, this);
         recyclerView.setAdapter(mWeatherAdapter);
-        Log.d(TAG, "displayHourlyForecast: list size -----------> " + dataList.size());
     }
 
     private void setUpMVP() {
-        mDetailPresenter = new DetailPresenterImpl(this, getNetworkInfo(), getSharedPreferences());
-    }
-
-    private NetworkInfo getNetworkInfo() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        return connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
-    }
-
-    private SharedPreferences getSharedPreferences() {
-        return getPreferences(MODE_PRIVATE);
+        mDetailPresenter = new DetailPresenterImpl(this);
     }
 
     private void setLayoutManager() {
@@ -83,6 +67,4 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         onBackPressed();
         return true;
     }
-
-
 }

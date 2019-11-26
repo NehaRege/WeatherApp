@@ -10,9 +10,5 @@ public interface MainPresenter {
 
     void onWeatherForecastViewClick();
 
-//    void findAddress(double latitude, double longitude);
-
-    void saveLocation(double latitude, double longitude, String name);
-
     void getMinMaxTemp(Forecast forecast);
 }

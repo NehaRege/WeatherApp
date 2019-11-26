@@ -56,10 +56,9 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
         //TODO: check this
         if (currentTime > data.time) {
-            holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.grey));
+            holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.darkBlue));
         } else {
             holder.itemView.setBackgroundColor(mContext.getResources().getColor(R.color.lightBlue));
-
         }
 
         setIcon(data.icon != null ? data.icon : "", holder.weatherIcon);

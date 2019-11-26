@@ -9,13 +9,11 @@ public interface DataManager {
 
     Observable<Forecast> getWeatherForecast(double latitude, double longitude);
 
-    //TODO: delete these
-    void saveWeatherForecastToSharedPrefs(Forecast forecast);
+    void saveForecastToSharedPrefs(Forecast forecast);
 
-    void saveLocation(Location location);
+    void saveLocation(double latitude, double longitude, String name);
 
-    Forecast getWeatherForecastFromSharedPrefs();
+    Forecast getSavedForecast();
 
     Location getSavedLocation();
-
 }

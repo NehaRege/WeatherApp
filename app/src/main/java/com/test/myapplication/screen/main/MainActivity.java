@@ -16,17 +16,13 @@ import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -49,8 +45,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @BindView(R.id.mainToolbar)
     Toolbar toolbar;
-    //    @BindView(R.id.mainLayout)
-//    ConstraintLayout mainLayout;
     @BindView(R.id.weatherForecastView)
     ConstraintLayout weatherForecastView;
     @BindView(R.id.errorView)
@@ -73,11 +67,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private MainPresenter mMainPresenter;
     private FusedLocationProviderClient mFusedLocationClient;
 
-    // TODO: Save location in SharedPrefs
-    public static double latitude = 40.7128;
-    public static double longitude = 74.0060;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,11 +80,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         setUpMVP();
 
         initLocation();
-
-//        //TODO: check error view click
-//        errorView.setOnClickListener(view -> {
-//            Log.d(TAG, "onClick: ");
-//        });
     }
 
     @Override
@@ -113,8 +97,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Override
     public void displayForecast(Forecast forecast, double minTemp, double maxTemp) {
-        Log.d(TAG, "displayForecast: ");
-
         temperature.setText(getString(R.string.temperatureWithFahrenheit, String.valueOf(forecast.currently.temperature)));
 
         highLowTemp.setText(getString(R.string.highLowTempMessage, String.valueOf(maxTemp), String.valueOf(minTemp)));
@@ -170,32 +152,13 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public boolean checkLocationPermissions() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public void requestLocationPermission() {
-        ActivityCompat.requestPermissions(
-                this,
-                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
-                Constants.LOCATION_PERMISSION_ID
-        );
-    }
-
-    @Override
-    public void openSettingsScreen() {
-        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        startActivity(intent);
-    }
-
-    @Override
     public String getSearchingLocationString() {
         return getApplicationContext().getString(R.string.searching_address);
+    }
+
+    @Override
+    public void getCurrentLocation() {
+        getLastLocation();
     }
 
     @OnClick(R.id.weatherForecastView)
@@ -205,7 +168,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @OnClick(R.id.errorView)
     void onErrorViewCardClick() {
-        Log.d(TAG, "onErrorViewCardClick: ");
         mMainPresenter.onErrorViewClick();
     }
 
@@ -216,11 +178,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     private void setUpMVP() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
-
-        mMainPresenter = new MainPresenterImpl(this, networkInfo, getPreferences(MODE_PRIVATE), new Geocoder(getApplicationContext()));
+        mMainPresenter = new MainPresenterImpl(this, new Geocoder(getApplicationContext()));
     }
 
     private void initLocation() {
@@ -250,7 +208,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         if (requestCode == Constants.LOCATION_PERMISSION_ID) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Granted. Start getting the location information
                 getLastLocation();
             }
         }
@@ -273,15 +230,11 @@ public class MainActivity extends AppCompatActivity implements MainView {
                             if (location == null) {
                                 requestNewLocationData();
                             } else {
-                                Log.d(TAG, "getLastLocation: LAT =============== " + location.getLatitude());
-                                Log.d(TAG, "getLastLocation: LONGITUDE =============== " + location.getLongitude());
-
                                 getWeatherForecast(location.getLatitude(), location.getLongitude());
                             }
                         }
                 );
             } else {
-                Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                 startActivity(intent);
             }
@@ -292,7 +245,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @SuppressLint("MissingPermission")
     private void requestNewLocationData() {
-
         LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         mLocationRequest.setInterval(0);
@@ -304,7 +256,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 mLocationRequest, mLocationCallback,
                 Looper.myLooper()
         );
-
     }
 
     private LocationCallback mLocationCallback = new LocationCallback() {
@@ -313,10 +264,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
             Location location = locationResult.getLastLocation();
 
             getWeatherForecast(location.getLatitude(), location.getLongitude());
-
-
-            Log.d(TAG, "onLocationResult: LAT ===============> " + location.getLatitude());
-            Log.d(TAG, "onLocationResult: LONGITUDE ===============> " + location.getLongitude());
         }
     };
 

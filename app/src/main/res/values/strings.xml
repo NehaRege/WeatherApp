@@ -6,8 +6,7 @@
     <string name="network_error_subtitle">Tap here to try again.</string>
     <string name="searching_address">Searching Current Address</string>
 
-
-    <string name="highLowTempMessage">Today: The high will be %1$s ℉ and low will be %2$s  ℉.</string>
+    <string name="highLowTempMessage">Today: The high will be %1$s ℉ and low will be %2$s  ℉</string>
     <string name="temperatureWithFahrenheit">%1$s ℉.</string>
     <string name="hourly_forecast">Hourly Forecast</string>
 
