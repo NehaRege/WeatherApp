@@ -1,6 +1,7 @@
 # WeatherApp
 
-The Weather App consists of two screens - Main View that displays the current date, time, weather and high and low temperatures, and Detail View that displays an hourly forecast. The app utilizes the Dark Sky API to display the weather forecast.
+Simple Weather App that takes your current location and display an hourly weather forecast.
+It consists of two screens - Main View that displays the current date, time, weather and high and low temperatures, and Detail View that displays an hourly forecast. The app utilizes the Dark Sky API to display the weather forecast.
 
 
 
